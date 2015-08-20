@@ -1,9 +1,18 @@
-﻿namespace Barker
+﻿using System;
+
+namespace Barker
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            string input; 
+            do
+            {
+                input = Console.ReadLine();
+            } while (input != "EXIT");
+
+            Console.Write("Good bye!");
         }
     }
 }
