@@ -4,6 +4,8 @@
     {
         public ICommand Create(string input)
         {
+            if(input.Contains("->"))
+                return new PostCommand();
             return new ShowUserMessagesCommand();
         }
     }
