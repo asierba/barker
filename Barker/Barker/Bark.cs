@@ -4,8 +4,11 @@ namespace Barker
 {
     public class Bark
     {
-        public Bark(string username, string mesage, DateTime date)
+        public Bark(string username, string message, DateTime date)
         {
+            Message = message;
         }
+
+        public string Message { get; private set; }
     }
 }

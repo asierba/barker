@@ -6,7 +6,7 @@ namespace Barker
     {
         public IList<Bark> GetBarks(string username)
         {
-            return null;
+            return new List<Bark>();
         }
     }
 }

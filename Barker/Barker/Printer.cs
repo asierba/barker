@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Barker
@@ -6,6 +7,10 @@ namespace Barker
     {
         public void PrintBarks(IEnumerable<Bark> barks)
         {
+            foreach (var bark in barks)
+            {
+                Console.WriteLine(bark.Message);
+            }
         }
     }
 }
