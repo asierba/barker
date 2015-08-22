@@ -6,7 +6,9 @@ namespace Barker
     {
         public static void Main(string[] args)
         {
-            var commandFactory = new CommandFactory();
+            IBarkRepository barkRepository = new BarkRepository();
+            IPrinter printer = new Printer();
+            var commandFactory = new CommandFactory(barkRepository, printer);
             var controller = new Controller(commandFactory);
 
             string input; 

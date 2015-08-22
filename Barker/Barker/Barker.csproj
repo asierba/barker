@@ -43,14 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bark.cs" />
+    <Compile Include="BarkRepository.cs" />
     <Compile Include="CommandFactory.cs" />
     <Compile Include="Controller.cs" />
+    <Compile Include="IBarkRepository.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ICommandFactory.cs" />
+    <Compile Include="IPrinter.cs" />
     <Compile Include="PostCommand.cs" />
+    <Compile Include="Printer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShowUserMessagesCommand.cs" />
+    <Compile Include="ShowBarksCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
