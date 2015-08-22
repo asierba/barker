@@ -6,12 +6,12 @@ namespace Barker
 {
     public class Program
     {
-        private static readonly Controller Controller;
+        public static IController Controller;
 
         static Program()
         {
             var container = CreateIocContainer();
-            Controller = container.Resolve<Controller>();
+            Controller = container.Resolve<IController>();
         }
 
         private static WindsorContainer CreateIocContainer()

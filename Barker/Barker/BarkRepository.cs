@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Barker
 {
@@ -6,7 +7,7 @@ namespace Barker
     {
         public IList<Bark> GetBarks(string username)
         {
-            return new List<Bark>();
+            throw new NotImplementedException();
         }
     }
 }

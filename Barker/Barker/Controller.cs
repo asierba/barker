@@ -1,6 +1,6 @@
 namespace Barker
 {
-    public class Controller
+    public class Controller : IController
     {
         private readonly ICommandFactory _commandFactory;
 
@@ -9,9 +9,9 @@ namespace Barker
             _commandFactory = commandFactory;
         }
 
-        public void Run(string input)
+        public void Run(string userInput)
         {
-            var command = _commandFactory.Create(input);
+            var command = _commandFactory.Create(userInput);
             command.Execute();
         }
     }

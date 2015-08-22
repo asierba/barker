@@ -3,7 +3,7 @@ using System.IO;
 using Barker;
 using NUnit.Framework;
 
-namespace Barkert.Tests
+namespace Barkert.Tests.UnitTests
 {
     [TestFixture]
     public class ProgramShould
@@ -11,17 +11,20 @@ namespace Barkert.Tests
         private StringWriter _consoleOutput;
 
         [SetUp]
-        public void MockConsoleOutput()
+        public void SetUp()
         {
             _consoleOutput = new StringWriter();
             Console.SetOut(_consoleOutput);
+
+            var controller = new Mock<IController>();
+            Program.Controller = controller.Object;
         }
 
         [Test] public void 
         exit_when_user_inputs_special_word()
         {
             MockConsoleInput("EXIT");
-
+                        
             Program.Main(new string[] { });
 
             Assert.That(_consoleOutput.ToString(), Is.StringEnding("Good bye!"));

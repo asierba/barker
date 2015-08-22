@@ -58,6 +58,7 @@
     <Compile Include="IBarkRepository.cs" />
     <Compile Include="ICommand.cs" />
     <Compile Include="ICommandFactory.cs" />
+    <Compile Include="IController.cs" />
     <Compile Include="Infrastructure\IocContainerSetup.cs" />
     <Compile Include="IPrinter.cs" />
     <Compile Include="PostCommand.cs" />
