@@ -52,6 +52,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\Entities\Bark.cs" />
+    <Compile Include="Delivery\CLI\ConsoleAdapter.cs" />
+    <Compile Include="Delivery\CLI\IConsole.cs" />
     <Compile Include="External\Repositories\BarkRepository.cs" />
     <Compile Include="Delivery\CLI\CommandFactory.cs" />
     <Compile Include="Delivery\CLI\Controller.cs" />

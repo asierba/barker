@@ -1,29 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Barker;
 using Barker.App.Entities;
 using Barker.Delivery.CLI;
 using NUnit.Framework;
+using Moq;
 
 namespace Barkert.Tests.UnitTests
 {
     [TestFixture]
     class PrinterShould
     {
-        private StringWriter _consoleOutput;
-
-        [SetUp]
-        public void MockConsoleOutput()
+       [Test] public void
+        print_barks_in_console()
         {
-            _consoleOutput = new StringWriter();
-            Console.SetOut(_consoleOutput);
-        }
+            var console = new Mock<IConsole>();
+            var printer = new Printer(console.Object);
 
-        [Test] public void
-        print_in_console_barks()
-        {
-            var printer = new Printer();
             var barks = new List<Bark>
             {
                 new Bark("Alice", "I love the weather today! :)", new DateTime(2015, 8, 22, 1, 7, 0)),
@@ -32,9 +25,8 @@ namespace Barkert.Tests.UnitTests
 
             printer.PrintBarks(barks);
 
-            Assert.That(_consoleOutput.ToString(), Is.StringEnding(@"I love the weather today! :)
-Hope I can go to the swimming pool..
-"));
+            console.Verify(x => x.WriteLine("I love the weather today! :)"));
+            console.Verify(x => x.WriteLine("Hope I can go to the swimming pool.."));
         }
     }
 }

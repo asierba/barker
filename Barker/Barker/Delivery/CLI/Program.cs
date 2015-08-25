@@ -1,5 +1,4 @@
-﻿using System;
-using Castle.Windsor;
+﻿using Castle.Windsor;
 using Castle.Windsor.Installer;
 
 namespace Barker.Delivery.CLI
@@ -7,11 +6,13 @@ namespace Barker.Delivery.CLI
     public class Program
     {
         public static IController Controller;
+        public static IConsole Console;
 
         static Program()
         {
             var container = CreateIocContainer();
             Controller = container.Resolve<IController>();
+            Console = container.Resolve<IConsole>();
         }
 
         private static WindsorContainer CreateIocContainer()
@@ -30,7 +31,7 @@ namespace Barker.Delivery.CLI
                 Controller.Run(userInput);
             } while (userInput != "EXIT");
 
-            Console.Write("Good bye!");
+            Console.WriteLine("Good bye!");
         }
     }
 }

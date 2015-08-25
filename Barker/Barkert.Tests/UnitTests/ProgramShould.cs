@@ -10,32 +10,18 @@ namespace Barkert.Tests.UnitTests
     [TestFixture]
     public class ProgramShould
     {
-        private StringWriter _consoleOutput;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _consoleOutput = new StringWriter();
-            Console.SetOut(_consoleOutput);
-
-            var controller = new Mock<IController>();
-            Program.Controller = controller.Object;
-        }
-
         [Test] public void 
         exit_when_user_inputs_special_word()
         {
-            MockConsoleInput("EXIT");
+            var console = new Mock<IConsole>();
+            Program.Console = console.Object;
+
+            console.Setup(x => x.ReadLine())
+                .Returns("EXIT");
                         
             Program.Main(new string[] { });
 
-            Assert.That(_consoleOutput.ToString(), Is.StringEnding("Good bye!"));
-        }
-
-        private static void MockConsoleInput(string exit)
-        {
-            var input = new StringReader(exit);
-            Console.SetIn(input);
+            console.Verify(x => x.WriteLine("Good bye!"));
         }
     }
 }
