@@ -6,19 +6,20 @@ namespace Barker.App.Actions
     public class ShowBarksCommand : ICommand
     {
         private readonly IPrinter _printer;
-        private readonly string _username;
         private readonly IBarkRepository _barkRepository;
 
         public ShowBarksCommand(string username, IBarkRepository barkRepository, IPrinter printer)
         {
-            _username = username;
+            Username = username;
             _barkRepository = barkRepository;
             _printer = printer;
         }
 
+        public string Username { get; }
+
         public void Execute()
         {
-            var barks =_barkRepository.GetBarks(_username);
+            var barks =_barkRepository.GetBarks(Username);
             _printer.PrintBarks(barks);
         }
     }

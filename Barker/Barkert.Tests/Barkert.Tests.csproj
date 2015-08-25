@@ -52,6 +52,7 @@
     <Compile Include="UnitTests\CommandFactoryShould.cs" />
     <Compile Include="UnitTests\ControllerShould.cs" />
     <Compile Include="Features\PostingFeature.cs" />
+    <Compile Include="UnitTests\PostCommandShould.cs" />
     <Compile Include="UnitTests\ProgramShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\PrinterShould.cs" />
