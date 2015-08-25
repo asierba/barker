@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using Barker.App.Entities;
 
-namespace Barker
+namespace Barker.External.Repositories
 {
     public interface IBarkRepository
     {

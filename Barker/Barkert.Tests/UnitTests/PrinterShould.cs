@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using Barker;
+using Barker.App.Entities;
+using Barker.Delivery.CLI;
 using NUnit.Framework;
 
 namespace Barkert.Tests.UnitTests

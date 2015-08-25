@@ -1,4 +1,6 @@
 ﻿using Barker;
+using Barker.App.Actions;
+using Barker.Delivery.CLI;
 using Moq;
 using NUnit.Framework;
 

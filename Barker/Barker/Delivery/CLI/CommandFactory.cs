@@ -1,4 +1,7 @@
-﻿namespace Barker
+﻿using Barker.App.Actions;
+using Barker.External.Repositories;
+
+namespace Barker.Delivery.CLI
 {
     public class CommandFactory : ICommandFactory
     {

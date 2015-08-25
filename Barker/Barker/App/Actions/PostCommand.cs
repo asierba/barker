@@ -1,6 +1,6 @@
 using System;
 
-namespace Barker
+namespace Barker.App.Actions
 {
     public class PostCommand : ICommand
     {

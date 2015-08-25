@@ -1,4 +1,4 @@
-namespace Barker
+namespace Barker.Delivery.CLI
 {
     public class Controller : IController
     {

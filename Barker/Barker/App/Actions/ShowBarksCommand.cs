@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Barker.Delivery.CLI;
+using Barker.External.Repositories;
 
-namespace Barker
+namespace Barker.App.Actions
 {
     public class ShowBarksCommand : ICommand
     {

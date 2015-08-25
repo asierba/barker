@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Barker;
+using Barker.Delivery.CLI;
 using NUnit.Framework;
 
 namespace Barkert.Tests

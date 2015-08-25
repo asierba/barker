@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Barker;
+using Barker.App.Actions;
+using Barker.App.Entities;
+using Barker.Delivery.CLI;
+using Barker.External.Repositories;
 using Moq;
 using NUnit.Framework;
 

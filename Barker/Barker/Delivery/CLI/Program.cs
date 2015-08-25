@@ -2,7 +2,7 @@
 using Castle.Windsor;
 using Castle.Windsor.Installer;
 
-namespace Barker
+namespace Barker.Delivery.CLI
 {
     public class Program
     {

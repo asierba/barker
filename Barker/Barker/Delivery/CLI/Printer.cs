@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using Barker.App.Entities;
 
-namespace Barker
+namespace Barker.Delivery.CLI
 {
     public class Printer : IPrinter
     {
