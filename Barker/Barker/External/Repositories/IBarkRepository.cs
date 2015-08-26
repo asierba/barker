@@ -6,6 +6,6 @@ namespace Barker.External.Repositories
     public interface IBarkRepository
     {
         IList<Bark> GetBarks(string username);
-        void Add(Bark bark);
+        void Add(string username, string message);
     }
 }

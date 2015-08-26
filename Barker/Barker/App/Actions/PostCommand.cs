@@ -24,7 +24,7 @@ namespace Barker.App.Actions
         {
             foreach (var message in Messages)
             {
-                _barkRepository.Add(new Bark(Username, message, DateTime.Now));
+                _barkRepository.Add(Username, message);
             }
         }
     }

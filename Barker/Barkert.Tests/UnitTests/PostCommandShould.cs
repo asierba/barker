@@ -1,9 +1,7 @@
-﻿using System;
-using Barker.App.Actions;
-using Barker.App.Entities;
+﻿using Barker.App.Actions;
 using Barker.External.Repositories;
-using NUnit.Framework;
 using Moq;
+using NUnit.Framework;
 
 namespace Barkert.Tests.UnitTests
 {
@@ -20,8 +18,7 @@ namespace Barkert.Tests.UnitTests
 
             postCommand.Execute();
 
-            barkRepository.Verify(x => x.Add(It.Is<Bark>(
-                y => y.Username == "bob" && y.Message == "a message")));
+            barkRepository.Verify(x => x.Add("bob", "a message"));
         }
 
         [Test]
@@ -35,10 +32,8 @@ namespace Barkert.Tests.UnitTests
 
             postCommand.Execute();
 
-            barkRepository.Verify(x => x.Add(It.Is<Bark>(
-                y => y.Username == "bob" && y.Message == "a message")));
-            barkRepository.Verify(x => x.Add(It.Is<Bark>(
-                y => y.Username == "bob" && y.Message == "another message")));
+            barkRepository.Verify(x => x.Add("bob","a message"));
+            barkRepository.Verify(x => x.Add("bob","another message"));
         }
     }
 }

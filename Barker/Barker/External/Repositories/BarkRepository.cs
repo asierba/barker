@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Barker.App.Entities;
 
@@ -13,9 +14,9 @@ namespace Barker.External.Repositories
             return _barks.Where(x => x.Username == username).ToList();
         }
 
-        public void Add(Bark bark)
+        public void Add(string username, string message)
         {
-            _barks.Add(bark);
+           _barks.Add(new Bark(username, message, DateTime.Now)); 
         }
     }
 }
