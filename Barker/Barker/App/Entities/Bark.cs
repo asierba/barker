@@ -8,9 +8,11 @@ namespace Barker.App.Entities
         {
             Username = username;
             Message = message;
+            Date = date;
         }
 
-        public string Message { get; private set; }
-        public string Username { private set; get; }
+        public string Message { get; }
+        public string Username { get; }
+        public DateTime Date { get; }
     }
 }
