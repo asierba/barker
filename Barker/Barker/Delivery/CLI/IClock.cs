@@ -4,6 +4,6 @@ namespace Barker.Delivery.CLI
 {
     public interface IClock
     {
-        string GetDifference(DateTime dateTime);
+        string GetTimeSpanned(DateTime dateTime);
     }
 }

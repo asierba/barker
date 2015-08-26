@@ -32,9 +32,9 @@ namespace Barkert.Tests.UnitTests
                 new Bark("Alice", "I love the weather today! :)", _fiveMinutesAgo),
                 new Bark("Alice", "Hope I can go to the swimming pool..", _twoHoursAgo),
             };
-           _clock.Setup(x => x.GetDifference(_fiveMinutesAgo))
+           _clock.Setup(x => x.GetTimeSpanned(_fiveMinutesAgo))
                .Returns("5 mins");
-            _clock.Setup(x => x.GetDifference(_twoHoursAgo))
+            _clock.Setup(x => x.GetTimeSpanned(_twoHoursAgo))
                .Returns("2 hours");
 
             _printer.PrintBarks(barks);

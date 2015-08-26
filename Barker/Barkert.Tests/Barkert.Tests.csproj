@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UnitTests\BarkRepositoryShould.cs" />
+    <Compile Include="UnitTests\ClockShould.cs" />
     <Compile Include="UnitTests\CommandFactoryShould.cs" />
     <Compile Include="UnitTests\ControllerShould.cs" />
     <Compile Include="Features\PostingFeature.cs" />
