@@ -6,7 +6,7 @@ namespace Barker.Delivery.CLI
     {
         public string GetTimeSpanned(DateTime dateTime)
         {
-            var timeSpan = DateTime.Now - dateTime;
+            var timeSpan = Now - dateTime;
 
             if (timeSpan.Days > 0)
                 return Format(timeSpan.Days, "day");
@@ -19,6 +19,8 @@ namespace Barker.Delivery.CLI
 
             return Format(timeSpan.Seconds, "second");
         }
+
+        public DateTime Now => DateTime.Now;
 
         private static string Format(int value, string type)
         {

@@ -2,7 +2,7 @@
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 
-namespace Barker.External
+namespace Barker
 {
     public class IocContainerSetup : IWindsorInstaller
     {

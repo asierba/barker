@@ -5,33 +5,35 @@ namespace Barker.Delivery.CLI
 {
     public class Program
     {
-        public static IController Controller;
-        public static IConsole Console;
+        private static IController _controller;
+        private static IConsole _console;
+        public static WindsorContainer Container;
 
         static Program()
         {
-            var container = CreateIocContainer();
-            Controller = container.Resolve<IController>();
-            Console = container.Resolve<IConsole>();
+            Container = CreateIocContainer();
         }
 
         private static WindsorContainer CreateIocContainer()
         {
             var container = new WindsorContainer();
-            container.Install(FromAssembly.This());
+            container.Install(new IocContainerSetup());
             return container;
         }
 
         public static void Main(string[] args)
         {
+            _controller = Container.Resolve<IController>();
+            _console = Container.Resolve<IConsole>();
+
             string userInput; 
             do
             {
-                userInput = Console.ReadLine();
-                Controller.Run(userInput);
+                userInput = _console.ReadLine();
+                _controller.Run(userInput);
             } while (userInput != "EXIT");
 
-            Console.WriteLine("Good bye!");
+            _console.WriteLine("Good bye!");
         }
     }
 }
