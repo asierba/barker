@@ -1,4 +1,5 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using System;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
 namespace Barkert.Tests
@@ -12,7 +13,7 @@ namespace Barkert.Tests
                 Component.For<T>()
                     .UsingFactoryMethod(x => instance)
                     .IsDefault()
-                    .Named("Override for " + typeof(T))
+                    .Named("Override for " + typeof(T) + Guid.NewGuid())
                 );
         }
     }

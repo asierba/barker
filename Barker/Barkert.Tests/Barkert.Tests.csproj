@@ -56,6 +56,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\FollowingFeature.cs" />
     <Compile Include="MoqExtensions.cs" />
     <Compile Include="UnitTests\BarkRepositoryShould.cs" />
     <Compile Include="UnitTests\ClockShould.cs" />

@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Barker.Delivery.CLI;
 using Moq;
 using NUnit.Framework;
@@ -7,10 +11,10 @@ using NUnit.Framework;
 namespace Barkert.Tests.Features
 {
     [TestFixture]
-    class PostingFeature
+    internal class FollowingFeature
     {
-        private readonly DateTime _oneMinuteAgo = DateTime.Now.AddMinutes(-1);
-        private readonly DateTime _twoMinutesAgo = DateTime.Now.AddMinutes(-2);
+
+        private readonly DateTime _twoSecondsAgo = DateTime.Now.AddSeconds(-2);
         private readonly DateTime _fiveMinutesAgo = DateTime.Now.AddMinutes(-5);
 
         private StringWriter _consoleOutput;
@@ -35,29 +39,25 @@ namespace Barkert.Tests.Features
             Console.SetIn(new StringReader(input));
         }
 
-        [Test]
-        public void
+        [Test] public void
         user_can_publish_message_to_personal_timeline()
         {
             MockConsoleInput(@"Alice->I love the weather today
-Bob->Damn!We lost!
-Bob->Good game though.
-Alice
-Bob
+Charlie -> I'm in New York today! Anyone want to have a coffee?
+Charlie follows Alice
+Charlie wall
 EXIT");
             _clock.Setup(x => x.Now)
-                .ReturnsInOrder(_fiveMinutesAgo, _twoMinutesAgo, _oneMinuteAgo);
+                .ReturnsInOrder(_fiveMinutesAgo, _twoSecondsAgo);
             _clock.Setup(x => x.GetTimeSpanned(_fiveMinutesAgo)).Returns("5 minutes");
-            _clock.Setup(x => x.GetTimeSpanned(_twoMinutesAgo)).Returns("2 minutes");
-            _clock.Setup(x => x.GetTimeSpanned(_oneMinuteAgo)).Returns("1 minute");
+            _clock.Setup(x => x.GetTimeSpanned(_twoSecondsAgo)).Returns("2 seconds");
 
 
             Program.Main(new string[] { });
 
-            Assert.That(_consoleOutput.ToString(), Is.StringEnding(@"I love the weather today(5 minutes ago)
-Good game though.(1 minute ago)
-Damn!We lost!(2 minutes ago)
-Good bye!
+            Assert.That(_consoleOutput.ToString(), Is.StringEnding(
+                @"Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)
+Alice - I love the weather today (5 minutes ago)
 "));
         }
     }
