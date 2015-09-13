@@ -1,4 +1,5 @@
-﻿using Barker.Delivery.CLI;
+﻿using System.Linq;
+using Barker.Delivery.CLI;
 using Barker.External.Repositories;
 
 namespace Barker.App.Actions
@@ -20,7 +21,8 @@ namespace Barker.App.Actions
         public void Execute()
         {
             var barks =_barkRepository.GetBarks(Username);
-            _printer.PrintBarks(barks);
+            var orderedBarks = barks.OrderByDescending(x => x.Date).ToList();
+            _printer.PrintBarks(orderedBarks);
         }
     }
 }

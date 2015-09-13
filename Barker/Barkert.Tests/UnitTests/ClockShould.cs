@@ -29,6 +29,4 @@ namespace Barkert.Tests.UnitTests
             Assert.That(clock.GetTimeSpanned(dateInPast), Is.EqualTo(expected));
         }
     }
-
-    
 }

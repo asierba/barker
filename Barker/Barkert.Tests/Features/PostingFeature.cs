@@ -36,7 +36,7 @@ namespace Barkert.Tests.Features
             Console.SetIn(input);
         }
 
-        //[Test]
+        [Test]
         public void
         user_can_publish_message_to_personal_timeline()
         {

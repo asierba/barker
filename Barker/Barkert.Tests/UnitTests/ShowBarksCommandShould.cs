@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Barker;
+using System.Linq;
 using Barker.App.Actions;
 using Barker.App.Entities;
 using Barker.Delivery.CLI;
@@ -13,25 +13,38 @@ namespace Barkert.Tests.UnitTests
     [TestFixture]
     class ShowBarksCommandShould
     {
-        [Test] public void
-        print_users_barks()
+        private static Mock<IBarkRepository> _barkRepository;
+        private static Mock<IPrinter> _printer;
+        private static ShowBarksCommand _showUserMessagesCommand;
+
+        private readonly DateTime _now = DateTime.Now;
+        private readonly DateTime _fiveHoursAgo = DateTime.Now.AddHours(-5);
+        private readonly DateTime _yesterday = DateTime.Now.AddDays(-1);
+
+        [SetUp]
+        public static void Setup()
         {
-            var username = "Alice";
-            var barkRepository = new Mock<IBarkRepository>();
-            var printer = new Mock<IPrinter>();
-            var showUserMessagesCommand = new ShowBarksCommand(username, barkRepository.Object, printer.Object);
+            _barkRepository = new Mock<IBarkRepository>();
+            _printer = new Mock<IPrinter>();
+            _showUserMessagesCommand = new ShowBarksCommand("Alice", _barkRepository.Object, _printer.Object);
+        }
 
-            var barks = new List<Bark>
-            {
-                new Bark("Alice", "I love the weather today! :)", new DateTime(2015, 8, 22, 1, 7, 0)),
-                new Bark("Alice", "Hope I can go to the swimming pool..", new DateTime(2015, 8, 22, 5, 27, 0)),
-            };
-            barkRepository.Setup(x => x.GetBarks(username))
-                .Returns(barks);
+        [Test] public void
+        print_users_barks_in_time_descending_order()
+        {
+            _barkRepository.Setup(x => x.GetBarks("Alice"))
+                .Returns(new List<Bark>
+                {
+                    new Bark("Alice", "Irrelevant", _fiveHoursAgo),
+                    new Bark("Alice", "Irrelevant", _yesterday),
+                    new Bark("Alice", "Irrelevant", _now)
+                });
 
-            showUserMessagesCommand.Execute();
+            _showUserMessagesCommand.Execute();
 
-            printer.Verify(x => x.PrintBarks(barks));
+            _printer.Verify(x => x.PrintBarks(It.Is<List<Bark>>(y => y.ElementAt(0).Date == _now)));
+            _printer.Verify(x => x.PrintBarks(It.Is<List<Bark>>(y => y.ElementAt(1).Date == _fiveHoursAgo)));
+            _printer.Verify(x => x.PrintBarks(It.Is<List<Bark>>(y => y.ElementAt(2).Date == _yesterday)));
         }
     }
 }
