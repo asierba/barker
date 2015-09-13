@@ -18,7 +18,7 @@ namespace Barker.Delivery.CLI
         {
             foreach (var bark in barks)
             {
-                _console.WriteLine(string.Format("{0}({1} ago)", bark.Message, _clock.GetTimeSpanned(bark.Date)));
+                _console.WriteLine($"{bark.Message}({_clock.GetTimeSpanned(bark.Date)} ago)");
             }
         }
     }

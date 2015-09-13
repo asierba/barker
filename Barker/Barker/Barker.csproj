@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\Actions\ShowWallCommand.cs" />
     <Compile Include="App\Entities\Bark.cs" />
     <Compile Include="Delivery\CLI\Clock.cs" />
     <Compile Include="Delivery\CLI\ConsoleAdapter.cs" />

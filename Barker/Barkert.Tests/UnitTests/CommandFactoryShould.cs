@@ -53,8 +53,7 @@ namespace Barkert.Tests.UnitTests
             Assert.That(command.Messages[2], Is.EqualTo("message3"));
         }
 
-        [Test]
-        public void
+        [Test] public void
         create_post_command_when_input_contains_multiple_arrow_symbol_with_spaces()
         {
             var input = "Alice -> message1 ->message2 ->message3";
@@ -66,5 +65,17 @@ namespace Barkert.Tests.UnitTests
             Assert.That(command.Messages[1], Is.EqualTo("message2"));
             Assert.That(command.Messages[2], Is.EqualTo("message3"));
         }
+
+        [Test]
+        public void
+            create_show_wall_command_when_input_contains_wall()
+        {
+            var input = "Bob wall";
+            var command = _commandFactory.Create(input) as ShowWallCommand;
+
+            Assert.That(command, Is.Not.Null, "Wrong command type");
+            Assert.That(command.Username, Is.EqualTo("Bob"));
+        }
+
     }
 }

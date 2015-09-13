@@ -20,6 +20,11 @@ namespace Barker.Delivery.CLI
 
         public ICommand Create(string input)
         {
+            if (input.Contains(" wall"))
+            {
+                var username = input.Remove(input.LastIndexOf(" wall"));
+                return new ShowWallCommand(username, _barkRepository, _printer);
+            }
             if (input.Contains(MessageSeparator))
             {
                 var inputChunks = input.Split(new[] { MessageSeparator }, StringSplitOptions.None);

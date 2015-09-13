@@ -10,12 +10,11 @@ using NUnit.Framework;
 
 namespace Barkert.Tests.UnitTests
 {
-    [TestFixture]
-    class ShowBarksCommandShould
+    class ShowWallCommandShould
     {
         private static Mock<IBarkRepository> _barkRepository;
         private static Mock<IPrinter> _printer;
-        private static ShowBarksCommand _showUserMessagesCommand;
+        private static ShowWallCommand _showWallCommand;
 
         private readonly DateTime _now = DateTime.Now;
         private readonly DateTime _fiveHoursAgo = DateTime.Now.AddHours(-5);
@@ -26,10 +25,11 @@ namespace Barkert.Tests.UnitTests
         {
             _barkRepository = new Mock<IBarkRepository>();
             _printer = new Mock<IPrinter>();
-            _showUserMessagesCommand = new ShowBarksCommand("Alice", _barkRepository.Object, _printer.Object);
+            _showWallCommand = new ShowWallCommand("Alice", _barkRepository.Object, _printer.Object);
         }
 
-        [Test] public void
+        [Test]
+        public void
         print_users_barks_in_time_descending_order()
         {
             _barkRepository.Setup(x => x.GetBarks("Alice"))
@@ -40,11 +40,11 @@ namespace Barkert.Tests.UnitTests
                     new Bark("Alice", "Irrelevant", _now)
                 });
 
-            _showUserMessagesCommand.Execute();
+            _showWallCommand.Execute();
 
             _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(0).Date == _now)));
             _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(1).Date == _fiveHoursAgo)));
-            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(2).Date == _yesterday)));
+            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark >>(y => y.ElementAt(2).Date == _yesterday)));
         }
     }
 }
