@@ -1,20 +1,22 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Barker.App.Entities;
+using Barker.Delivery.CLI;
 using Barker.External.Repositories;
 
 namespace Barker.App.Actions
 {
     public class PostCommand : ICommand
     {
-        private readonly IBarkRepository _barkRepository;
+        private readonly IUserRepository _userRepository;
+        private readonly IClock _clock;
 
-        public PostCommand(string username, IList<string> message, IBarkRepository barkRepository)
+        public PostCommand(string username, IList<string> message, IUserRepository userRepository, IClock clock)
         {
             Username = username;
             Messages = message;
-            _barkRepository = barkRepository;
+            _userRepository = userRepository;
+            _clock = clock;
         }
 
         public string Username { get; }
@@ -22,9 +24,16 @@ namespace Barker.App.Actions
 
         public void Execute()
         {
+            var user =_userRepository.Get(Username);
+            if (user == null)
+            {
+                user = new User(Username);
+                _userRepository.Add(user);
+            }
+
             foreach (var message in Messages)
             {
-                _barkRepository.Add(Username, message);
+                user.Barks.Add(new Bark(Username, message, _clock.Now));
             }
         }
     }

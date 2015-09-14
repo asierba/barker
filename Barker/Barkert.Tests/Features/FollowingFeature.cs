@@ -52,12 +52,12 @@ EXIT");
             _clock.Setup(x => x.GetTimeSpanned(_fiveMinutesAgo)).Returns("5 minutes");
             _clock.Setup(x => x.GetTimeSpanned(_twoSecondsAgo)).Returns("2 seconds");
 
-
             Program.Main(new string[] { });
 
             Assert.That(_consoleOutput.ToString(), Is.StringEnding(
-                @"Charlie - I'm in New York today! Anyone want to have a coffee? (2 seconds ago)
-Alice - I love the weather today (5 minutes ago)
+                @"Charlie - I'm in New York today! Anyone want to have a coffee?(2 seconds ago)
+Alice - I love the weather today(5 minutes ago)
+Good bye!
 "));
         }
     }

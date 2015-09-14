@@ -10,13 +10,11 @@ namespace Barkert.Tests.UnitTests
     class CommandFactoryShould
     {
         private CommandFactory _commandFactory;
-        private Mock<IBarkRepository> _barkRepository;
 
         [SetUp]
         public void Setup()
         {
-            _barkRepository = new Mock<IBarkRepository>();
-            _commandFactory = new CommandFactory(_barkRepository.Object, new Mock<IPrinter>().Object);
+            _commandFactory = new CommandFactory(new Mock<IUserRepository>().Object,  new Mock<IPrinter>().Object, new Mock<IClock>().Object);
         }
 
         [Test] public void
@@ -80,11 +78,12 @@ namespace Barkert.Tests.UnitTests
         create_follow_wall_command_when_input_contains_follow()
         {
 
-            var input = "Bob follows allice";
+            var input = "Bob follows Allice";
             var command = _commandFactory.Create(input) as FollowCommand;
 
             Assert.That(command, Is.Not.Null, "Wrong command type");
             Assert.That(command.Username, Is.EqualTo("Bob"));
+            Assert.That(command.Following, Is.EqualTo("Allice"));
         }
     }
 }

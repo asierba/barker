@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Barker.App.Entities;
 using Barker.Delivery.CLI;
@@ -7,22 +8,29 @@ namespace Barker.App.Actions
 {
     public class ShowWallCommand : ICommand
     {
-        private readonly IBarkRepository _barkRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IPrinter _printer;
 
-        public ShowWallCommand(string username, IBarkRepository barkRepository, IPrinter printer)
+        public ShowWallCommand(string username, IUserRepository userRepository, IPrinter printer)
         {
-            _barkRepository = barkRepository;
-            _printer = printer;
             Username = username;
-        }
-
-        public void Execute()
-        {
-            var barks =_barkRepository.GetBarks(Username);
-            _printer.PrintBarksWithUsername(barks.OrderByDescending(x => x.Date));
+            _printer = printer;
+            _userRepository = userRepository;
         }
 
         public string Username { get; }
+
+        public void Execute()
+        {
+            var user = _userRepository.Get(Username);
+            var barks = user.Barks;
+
+            foreach (var followingUser in user.Following)
+            {
+                barks.AddRange(followingUser.Barks);
+            }
+
+            _printer.PrintBarksWithUsername(barks.OrderByDescending(x => x.Date));
+        }
     }
 }

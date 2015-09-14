@@ -12,39 +12,55 @@ namespace Barkert.Tests.UnitTests
 {
     class ShowWallCommandShould
     {
-        private static Mock<IBarkRepository> _barkRepository;
-        private static Mock<IPrinter> _printer;
-        private static ShowWallCommand _showWallCommand;
+        private Mock<IPrinter> _printer;
+        private Mock<IUserRepository> _userRepository;
+        private ShowWallCommand _showWallCommand;
 
         private readonly DateTime _now = DateTime.Now;
         private readonly DateTime _fiveHoursAgo = DateTime.Now.AddHours(-5);
         private readonly DateTime _yesterday = DateTime.Now.AddDays(-1);
 
         [SetUp]
-        public static void Setup()
+        public void Setup()
         {
-            _barkRepository = new Mock<IBarkRepository>();
+            _userRepository = new Mock<IUserRepository>();
             _printer = new Mock<IPrinter>();
-            _showWallCommand = new ShowWallCommand("Alice", _barkRepository.Object, _printer.Object);
+            _showWallCommand = new ShowWallCommand("Alice", _userRepository.Object, _printer.Object);
         }
 
-        [Test]
-        public void
+        [Test] public void
         print_users_barks_in_time_descending_order()
         {
-            _barkRepository.Setup(x => x.GetBarks("Alice"))
-                .Returns(new List<Bark>
-                {
-                    new Bark("Alice", "Irrelevant", _fiveHoursAgo),
-                    new Bark("Alice", "Irrelevant", _yesterday),
-                    new Bark("Alice", "Irrelevant", _now)
-                });
-
+            var alice = new User("Alice");
+            alice.Barks.Add(new Bark("Alice", "Irrelevant", _fiveHoursAgo));
+            alice.Barks.Add(new Bark("Alice", "Irrelevant", _yesterday));
+            alice.Barks.Add(new Bark("Alice", "Irrelevant", _now));
+            _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
+            _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
             _showWallCommand.Execute();
 
             _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.ElementAt(0).Date == _now)));
             _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.ElementAt(1).Date == _fiveHoursAgo)));
             _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark >>(y => y.ElementAt(2).Date == _yesterday)));
+        }
+
+        [Test] public void
+        print_barks_from_following_users()
+        {
+            var barkFromAlice = new Bark("Alice", "a message", DateTime.Now.AddDays(-1));
+            var barkFromBob = new Bark("Bob", "a message", DateTime.Now.AddDays(-5));
+
+            var alice = new User("Alice");
+            var bob = new User("Bob");
+            bob.Barks.Add(barkFromBob);
+            alice.Following.Add(bob);
+            alice.Barks.Add(barkFromAlice);
+            _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
+
+            _showWallCommand.Execute();
+
+            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.Contains(barkFromAlice))));
+            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.Contains(barkFromBob))));
         }
     }
 }

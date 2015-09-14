@@ -35,8 +35,7 @@ namespace Barkert.Tests.Features
             Console.SetIn(new StringReader(input));
         }
 
-        [Test]
-        public void
+        [Test] public void
         user_can_publish_message_to_personal_timeline()
         {
             MockConsoleInput(@"Alice->I love the weather today

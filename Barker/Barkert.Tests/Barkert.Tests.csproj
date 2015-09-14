@@ -58,17 +58,18 @@
   <ItemGroup>
     <Compile Include="Features\FollowingFeature.cs" />
     <Compile Include="MoqExtensions.cs" />
-    <Compile Include="UnitTests\BarkRepositoryShould.cs" />
     <Compile Include="UnitTests\ClockShould.cs" />
     <Compile Include="UnitTests\CommandFactoryShould.cs" />
     <Compile Include="UnitTests\ControllerShould.cs" />
     <Compile Include="Features\PostingFeature.cs" />
+    <Compile Include="UnitTests\FollowCommandShould.cs" />
     <Compile Include="UnitTests\PostCommandShould.cs" />
     <Compile Include="UnitTests\ProgramShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\PrinterShould.cs" />
     <Compile Include="UnitTests\ShowBarksCommandShould.cs" />
     <Compile Include="UnitTests\ShowWallCommandShould.cs" />
+    <Compile Include="UnitTests\UserRepositoryShould.cs" />
     <Compile Include="WindsorContainerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

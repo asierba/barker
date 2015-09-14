@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Barker.App.Entities;
 using Barker.Delivery.CLI;
 using Barker.External.Repositories;
@@ -7,22 +8,22 @@ namespace Barker.App.Actions
 {
     public class ShowBarksCommand : ICommand
     {
+        private readonly IUserRepository _userRepository;
         private readonly IPrinter _printer;
-        private readonly IBarkRepository _barkRepository;
 
-        public ShowBarksCommand(string username, IBarkRepository barkRepository, IPrinter printer)
+        public ShowBarksCommand(string username, IUserRepository userRepository, IPrinter printer)
         {
             Username = username;
-            _barkRepository = barkRepository;
             _printer = printer;
+           _userRepository = userRepository;
         }
 
         public string Username { get; }
 
         public void Execute()
         {
-            var barks =_barkRepository.GetBarks(Username);
-            _printer.PrintBarks(barks.OrderByDescending(x => x.Date));
+            var user = _userRepository.Get(Username);
+            _printer.PrintBarks(user.Barks.OrderByDescending(x => x.Date));
         }
     }
 }

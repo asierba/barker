@@ -51,19 +51,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\Actions\FollowCommand.cs" />
     <Compile Include="App\Actions\ShowWallCommand.cs" />
     <Compile Include="App\Entities\Bark.cs" />
+    <Compile Include="App\Entities\User.cs" />
     <Compile Include="Delivery\CLI\Clock.cs" />
     <Compile Include="Delivery\CLI\ConsoleAdapter.cs" />
     <Compile Include="Delivery\CLI\IClock.cs" />
     <Compile Include="Delivery\CLI\IConsole.cs" />
-    <Compile Include="External\Repositories\BarkRepository.cs" />
     <Compile Include="Delivery\CLI\CommandFactory.cs" />
     <Compile Include="Delivery\CLI\Controller.cs" />
-    <Compile Include="External\Repositories\IBarkRepository.cs" />
+    <Compile Include="External\Repositories\UserRepository.cs" />
     <Compile Include="App\Actions\ICommand.cs" />
     <Compile Include="Delivery\CLI\ICommandFactory.cs" />
     <Compile Include="Delivery\CLI\IController.cs" />
+    <Compile Include="External\Repositories\IUserRepository.cs" />
     <Compile Include="IocContainerSetup.cs" />
     <Compile Include="Delivery\CLI\IPrinter.cs" />
     <Compile Include="App\Actions\PostCommand.cs" />

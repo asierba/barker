@@ -30,7 +30,7 @@ namespace Barker.Delivery.CLI
             do
             {
                 userInput = _console.ReadLine();
-                _controller.Run(userInput);
+                if(userInput != "EXIT") _controller.Run(userInput);
             } while (userInput != "EXIT");
 
             _console.WriteLine("Good bye!");

@@ -13,8 +13,8 @@ namespace Barkert.Tests.UnitTests
     [TestFixture]
     class ShowBarksCommandShould
     {
-        private static Mock<IBarkRepository> _barkRepository;
         private static Mock<IPrinter> _printer;
+        private static Mock<IUserRepository> _userRepository;
         private static ShowBarksCommand _showUserMessagesCommand;
 
         private readonly DateTime _now = DateTime.Now;
@@ -24,21 +24,19 @@ namespace Barkert.Tests.UnitTests
         [SetUp]
         public static void Setup()
         {
-            _barkRepository = new Mock<IBarkRepository>();
+            _userRepository = new Mock<IUserRepository>();
             _printer = new Mock<IPrinter>();
-            _showUserMessagesCommand = new ShowBarksCommand("Alice", _barkRepository.Object, _printer.Object);
+            _showUserMessagesCommand = new ShowBarksCommand("Alice", _userRepository.Object, _printer.Object);
         }
 
         [Test] public void
         print_users_barks_in_time_descending_order()
         {
-            _barkRepository.Setup(x => x.GetBarks("Alice"))
-                .Returns(new List<Bark>
-                {
-                    new Bark("Alice", "Irrelevant", _fiveHoursAgo),
-                    new Bark("Alice", "Irrelevant", _yesterday),
-                    new Bark("Alice", "Irrelevant", _now)
-                });
+            var alice = new User("alice");
+            alice.Barks.Add(new Bark("Alice", "Irrelevant", _fiveHoursAgo));
+            alice.Barks.Add(new Bark("Alice", "Irrelevant", _yesterday));
+            alice.Barks.Add(new Bark("Alice", "Irrelevant", _now));
+            _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
 
             _showUserMessagesCommand.Execute();
 
