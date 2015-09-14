@@ -20,7 +20,7 @@ namespace Barker.App.Actions
         public void Execute()
         {
             var barks =_barkRepository.GetBarks(Username);
-            _printer.PrintBarks(barks.OrderByDescending(x => x.Date));
+            _printer.PrintBarksWithUsername(barks.OrderByDescending(x => x.Date));
         }
 
         public string Username { get; }

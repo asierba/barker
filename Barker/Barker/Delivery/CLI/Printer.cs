@@ -21,5 +21,13 @@ namespace Barker.Delivery.CLI
                 _console.WriteLine($"{bark.Message}({_clock.GetTimeSpanned(bark.Date)} ago)");
             }
         }
+
+        public void PrintBarksWithUsername(IEnumerable<Bark> barks)
+        {
+            foreach (var bark in barks)
+            {
+                _console.WriteLine($"{bark.Username} - {bark.Message}({_clock.GetTimeSpanned(bark.Date)} ago)");
+            }
+        }
     }
 }

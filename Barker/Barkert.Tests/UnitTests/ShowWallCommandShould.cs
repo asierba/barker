@@ -42,9 +42,9 @@ namespace Barkert.Tests.UnitTests
 
             _showWallCommand.Execute();
 
-            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(0).Date == _now)));
-            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(1).Date == _fiveHoursAgo)));
-            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark >>(y => y.ElementAt(2).Date == _yesterday)));
+            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.ElementAt(0).Date == _now)));
+            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.ElementAt(1).Date == _fiveHoursAgo)));
+            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark >>(y => y.ElementAt(2).Date == _yesterday)));
         }
     }
 }

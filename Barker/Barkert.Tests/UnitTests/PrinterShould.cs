@@ -42,5 +42,25 @@ namespace Barkert.Tests.UnitTests
             _console.Verify(x => x.WriteLine("I love the weather today! :)(5 mins ago)"));
             _console.Verify(x => x.WriteLine("Hope I can go to the swimming pool..(2 hours ago)"));
         }
+
+        [Test]
+        public void
+        print_barks_in_console_with_username()
+        {
+            var barks = new List<Bark>
+            {
+                new Bark("Alice", "I love the weather today! :)", _fiveMinutesAgo),
+                new Bark("Alice", "Hope I can go to the swimming pool..", _twoHoursAgo),
+            };
+            _clock.Setup(x => x.GetTimeSpanned(_fiveMinutesAgo))
+                .Returns("5 mins");
+            _clock.Setup(x => x.GetTimeSpanned(_twoHoursAgo))
+               .Returns("2 hours");
+
+            _printer.PrintBarksWithUsername(barks);
+
+            _console.Verify(x => x.WriteLine("Alice - I love the weather today! :)(5 mins ago)"));
+            _console.Verify(x => x.WriteLine("Alice - Hope I can go to the swimming pool..(2 hours ago)"));
+        }
     }
 }
