@@ -66,9 +66,8 @@ namespace Barkert.Tests.UnitTests
             Assert.That(command.Messages[2], Is.EqualTo("message3"));
         }
 
-        [Test]
-        public void
-            create_show_wall_command_when_input_contains_wall()
+        [Test] public void
+        create_show_wall_command_when_input_contains_wall()
         {
             var input = "Bob wall";
             var command = _commandFactory.Create(input) as ShowWallCommand;
@@ -77,5 +76,15 @@ namespace Barkert.Tests.UnitTests
             Assert.That(command.Username, Is.EqualTo("Bob"));
         }
 
+        [Test] public void
+        create_follow_wall_command_when_input_contains_follow()
+        {
+
+            var input = "Bob follows allice";
+            var command = _commandFactory.Create(input) as FollowCommand;
+
+            Assert.That(command, Is.Not.Null, "Wrong command type");
+            Assert.That(command.Username, Is.EqualTo("Bob"));
+        }
     }
 }

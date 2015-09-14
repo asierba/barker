@@ -20,6 +20,12 @@ namespace Barker.Delivery.CLI
 
         public ICommand Create(string input)
         {
+            if (input.Contains(" follows"))
+            {
+                var username = input.Remove(input.LastIndexOf(" follows"));
+                var following = input.Substring(input.LastIndexOf(" follows") + " follows".Length + 1);
+                return new FollowCommand(username, following);
+            }
             if (input.Contains(" wall"))
             {
                 var username = input.Remove(input.LastIndexOf(" wall"));
