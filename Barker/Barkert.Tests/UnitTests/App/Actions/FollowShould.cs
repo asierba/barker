@@ -9,9 +9,10 @@ namespace Barkert.Tests.UnitTests.App.Actions
     [TestFixture]
     class FollowShould
     {
+        private Mock<IUserRepository> _userRepository;
+
         private readonly User _charlie = new User("Charlie");
         private readonly User _allice = new User("Allice");
-        private Mock<IUserRepository> _userRepository;
 
         [SetUp]
         public void Setup()

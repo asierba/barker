@@ -2,6 +2,7 @@
 using System.IO;
 using Barker.Delivery.CLI;
 using Barker.External;
+using Barkert.Tests.Helpers;
 using Moq;
 using NUnit.Framework;
 

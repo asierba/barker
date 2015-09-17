@@ -57,8 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Features\FollowingFeature.cs" />
-    <Compile Include="MoqExtensions.cs" />
+    <Compile Include="Helpers\MoqExtensions.cs" />
     <Compile Include="UnitTests\App\Actions\FollowShould.cs" />
+    <Compile Include="Helpers\UserBuilder.cs" />
     <Compile Include="UnitTests\Delivery\CLI\ActionFactoryShould.cs" />
     <Compile Include="Features\PostingFeature.cs" />
     <Compile Include="UnitTests\Delivery\CLI\ControllerShould.cs" />
@@ -70,7 +71,7 @@
     <Compile Include="UnitTests\App\Actions\ShowBarksShould.cs" />
     <Compile Include="UnitTests\App\Actions\ShowWallShould.cs" />
     <Compile Include="UnitTests\External\Repositories\UserRepositoryShould.cs" />
-    <Compile Include="WindsorContainerExtensions.cs" />
+    <Compile Include="Helpers\WindsorContainerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

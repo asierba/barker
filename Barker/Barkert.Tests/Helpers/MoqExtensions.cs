@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Moq.Language.Flow;
 
-namespace Barkert.Tests
+namespace Barkert.Tests.Helpers
 {
     public static class MoqExtensions
     {

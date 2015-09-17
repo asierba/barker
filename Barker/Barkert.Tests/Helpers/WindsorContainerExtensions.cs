@@ -2,7 +2,7 @@
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 
-namespace Barkert.Tests
+namespace Barkert.Tests.Helpers
 {
     public static class WindsorContainerExtensions
     {

@@ -5,6 +5,7 @@ using Barker.App.Actions;
 using Barker.App.Entities;
 using Barker.Delivery.CLI;
 using Barker.External.Repositories;
+using Barkert.Tests.Helpers;
 using Moq;
 using NUnit.Framework;
 
@@ -32,10 +33,12 @@ namespace Barkert.Tests.UnitTests.App.Actions
         [Test] public void
         print_users_barks_in_time_descending_order()
         {
-            var alice = new User("Alice");
-            alice.AddBark(new Bark("Hi!", _fiveHoursAgo));
-            alice.AddBark(new Bark("This is a test message", _yesterday));
-            alice.AddBark(new Bark("This is another one!", _now));
+           var alice = UserBuilder.AUser()
+                .WithName("Alice")
+                .WithBark(_fiveHoursAgo)
+                .WithBark(_yesterday)
+                .WithBark(_now)
+                .Build();
             _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
 
             _showUserMessages.Execute();
