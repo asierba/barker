@@ -1,17 +1,15 @@
-using System.Collections.Generic;
 using System.Linq;
-using Barker.App.Entities;
 using Barker.Delivery.CLI;
 using Barker.External.Repositories;
 
 namespace Barker.App.Actions
 {
-    public class ShowWallCommand : ICommand
+    public class ShowWall : IAction
     {
         private readonly IUserRepository _userRepository;
         private readonly IPrinter _printer;
 
-        public ShowWallCommand(string username, IUserRepository userRepository, IPrinter printer)
+        public ShowWall(string username, IUserRepository userRepository, IPrinter printer)
         {
             Username = username;
             _printer = printer;

@@ -1,8 +1,8 @@
-﻿using System;
-using Barker.Delivery.CLI;
+using System;
+using Barker.External;
 using NUnit.Framework;
 
-namespace Barkert.Tests.UnitTests
+namespace Barkert.Tests.UnitTests.External
 {
     [TestFixture]
     class ClockShould

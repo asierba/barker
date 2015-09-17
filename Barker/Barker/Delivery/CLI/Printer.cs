@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Barker.App.Entities;
+using Barker.External;
 
 namespace Barker.Delivery.CLI
 {

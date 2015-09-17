@@ -8,14 +8,14 @@ using Barker.External.Repositories;
 using Moq;
 using NUnit.Framework;
 
-namespace Barkert.Tests.UnitTests
+namespace Barkert.Tests.UnitTests.App.Actions
 {
     [TestFixture]
-    class ShowBarksCommandShould
+    class ShowBarksShould
     {
         private static Mock<IPrinter> _printer;
         private static Mock<IUserRepository> _userRepository;
-        private static ShowBarksCommand _showUserMessagesCommand;
+        private static ShowBarks _showUserMessages;
 
         private readonly DateTime _now = DateTime.Now;
         private readonly DateTime _fiveHoursAgo = DateTime.Now.AddHours(-5);
@@ -26,7 +26,7 @@ namespace Barkert.Tests.UnitTests
         {
             _userRepository = new Mock<IUserRepository>();
             _printer = new Mock<IPrinter>();
-            _showUserMessagesCommand = new ShowBarksCommand("Alice", _userRepository.Object, _printer.Object);
+            _showUserMessages = new ShowBarks("Alice", _userRepository.Object, _printer.Object);
         }
 
         [Test] public void
@@ -38,7 +38,7 @@ namespace Barkert.Tests.UnitTests
             alice.Barks.Add(new Bark("Alice", "Irrelevant", _now));
             _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
 
-            _showUserMessagesCommand.Execute();
+            _showUserMessages.Execute();
 
             _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(0).Date == _now)));
             _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(1).Date == _fiveHoursAgo)));

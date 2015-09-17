@@ -1,17 +1,16 @@
-using System;
 using System.Collections.Generic;
 using Barker.App.Entities;
-using Barker.Delivery.CLI;
+using Barker.External;
 using Barker.External.Repositories;
 
 namespace Barker.App.Actions
 {
-    public class PostCommand : ICommand
+    public class Post : IAction
     {
         private readonly IUserRepository _userRepository;
         private readonly IClock _clock;
 
-        public PostCommand(string username, IList<string> message, IUserRepository userRepository, IClock clock)
+        public Post(string username, IList<string> message, IUserRepository userRepository, IClock clock)
         {
             Username = username;
             Messages = message;

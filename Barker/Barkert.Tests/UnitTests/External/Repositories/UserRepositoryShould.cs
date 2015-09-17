@@ -2,7 +2,7 @@
 using Barker.External.Repositories;
 using NUnit.Framework;
 
-namespace Barkert.Tests.UnitTests
+namespace Barkert.Tests.UnitTests.External.Repositories
 {
     [TestFixture]
     class UserRepositoryShould

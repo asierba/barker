@@ -1,14 +1,13 @@
-﻿using System.Linq;
 using Barker.App.Actions;
 using Barker.App.Entities;
 using Barker.External.Repositories;
 using Moq;
 using NUnit.Framework;
 
-namespace Barkert.Tests.UnitTests
+namespace Barkert.Tests.UnitTests.App.Actions
 {
     [TestFixture]
-    class FollowCommandShould
+    class FollowShould
     {
         private readonly User _charlie = new User("Charlie");
         private readonly User _allice = new User("Allice");
@@ -23,12 +22,12 @@ namespace Barkert.Tests.UnitTests
         [Test] public void 
         add_follower_to_the_repository()
         {
-            var followCommand = new FollowCommand("Charlie", "Allice", _userRepository.Object);
+            var follow = new Follow("Charlie", "Allice", _userRepository.Object);
 
             _userRepository.Setup(x => x.Get("Charlie")).Returns(_charlie);
             _userRepository.Setup(x => x.Get("Allice")).Returns(_allice);
 
-            followCommand.Execute();
+            follow.Execute();
 
             Assert.Contains(_allice, _charlie.Following);
         } 

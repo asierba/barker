@@ -58,18 +58,18 @@
   <ItemGroup>
     <Compile Include="Features\FollowingFeature.cs" />
     <Compile Include="MoqExtensions.cs" />
-    <Compile Include="UnitTests\ClockShould.cs" />
-    <Compile Include="UnitTests\CommandFactoryShould.cs" />
-    <Compile Include="UnitTests\ControllerShould.cs" />
+    <Compile Include="UnitTests\App\Actions\FollowShould.cs" />
+    <Compile Include="UnitTests\Delivery\CLI\ActionFactoryShould.cs" />
     <Compile Include="Features\PostingFeature.cs" />
-    <Compile Include="UnitTests\FollowCommandShould.cs" />
-    <Compile Include="UnitTests\PostCommandShould.cs" />
-    <Compile Include="UnitTests\ProgramShould.cs" />
+    <Compile Include="UnitTests\Delivery\CLI\ControllerShould.cs" />
+    <Compile Include="UnitTests\External\ClockShould.cs" />
+    <Compile Include="UnitTests\App\Actions\PostShould.cs" />
+    <Compile Include="UnitTests\External\ProgramShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\PrinterShould.cs" />
-    <Compile Include="UnitTests\ShowBarksCommandShould.cs" />
-    <Compile Include="UnitTests\ShowWallCommandShould.cs" />
-    <Compile Include="UnitTests\UserRepositoryShould.cs" />
+    <Compile Include="UnitTests\App\Actions\ShowBarksShould.cs" />
+    <Compile Include="UnitTests\App\Actions\ShowWallShould.cs" />
+    <Compile Include="UnitTests\External\Repositories\UserRepositoryShould.cs" />
     <Compile Include="WindsorContainerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Barker.Delivery.CLI;
+using Barker.External;
 using Moq;
 using NUnit.Framework;
 

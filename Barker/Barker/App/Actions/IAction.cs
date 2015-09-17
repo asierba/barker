@@ -1,6 +1,6 @@
 ﻿namespace Barker.App.Actions
 {
-    public interface ICommand
+    public interface IAction
     {
         void Execute();
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Barker.App.Entities;
 using Barker.Delivery.CLI;
+using Barker.External;
 using Moq;
 using NUnit.Framework;
 

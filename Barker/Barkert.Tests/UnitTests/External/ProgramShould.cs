@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 
-namespace Barkert.Tests.UnitTests
+namespace Barkert.Tests.UnitTests.External
 {
     [TestFixture]
     public class ProgramShould

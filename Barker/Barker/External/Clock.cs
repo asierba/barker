@@ -1,6 +1,6 @@
 using System;
 
-namespace Barker.Delivery.CLI
+namespace Barker.External
 {
     public class Clock : IClock
     {

@@ -2,17 +2,17 @@ namespace Barker.Delivery.CLI
 {
     public class Controller : IController
     {
-        private readonly ICommandFactory _commandFactory;
+        private readonly IActionFactory _actionFactory;
 
-        public Controller(ICommandFactory commandFactory)
+        public Controller(IActionFactory actionFactory)
         {
-            _commandFactory = commandFactory;
+            _actionFactory = actionFactory;
         }
 
         public void Run(string userInput)
         {
-            var command = _commandFactory.Create(userInput);
-            command.Execute();
+            var action = _actionFactory.Create(userInput);
+            action.Execute();
         }
     }
 }

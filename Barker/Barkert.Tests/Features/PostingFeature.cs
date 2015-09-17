@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using Barker.Delivery.CLI;
+using Barker.External;
 using Moq;
 using NUnit.Framework;
 
