@@ -67,9 +67,9 @@
     <Compile Include="Delivery\CLI\IController.cs" />
     <Compile Include="External\Repositories\IUserRepository.cs" />
     <Compile Include="IocContainerSetup.cs" />
-    <Compile Include="Delivery\CLI\IPrinter.cs" />
+    <Compile Include="Delivery\CLI\IBarksPrinter.cs" />
     <Compile Include="App\Actions\Post.cs" />
-    <Compile Include="Delivery\CLI\Printer.cs" />
+    <Compile Include="Delivery\CLI\BarksPrinter.cs" />
     <Compile Include="Delivery\CLI\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App\Actions\ShowBarks.cs" />

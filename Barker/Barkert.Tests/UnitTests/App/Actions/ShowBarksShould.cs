@@ -13,7 +13,7 @@ namespace Barkert.Tests.UnitTests.App.Actions
     [TestFixture]
     class ShowBarksShould
     {
-        private static Mock<IPrinter> _printer;
+        private static Mock<IBarksPrinter> _printer;
         private static Mock<IUserRepository> _userRepository;
         private static ShowBarks _showUserMessages;
 
@@ -25,17 +25,17 @@ namespace Barkert.Tests.UnitTests.App.Actions
         public static void Setup()
         {
             _userRepository = new Mock<IUserRepository>();
-            _printer = new Mock<IPrinter>();
+            _printer = new Mock<IBarksPrinter>();
             _showUserMessages = new ShowBarks("Alice", _userRepository.Object, _printer.Object);
         }
 
         [Test] public void
         print_users_barks_in_time_descending_order()
         {
-            var alice = new User("alice");
-            alice.AddBark(new Bark("Alice", "Irrelevant", _fiveHoursAgo));
-            alice.AddBark(new Bark("Alice", "Irrelevant", _yesterday));
-            alice.AddBark(new Bark("Alice", "Irrelevant", _now));
+            var alice = new User("Alice");
+            alice.AddBark(new Bark("Hi!", _fiveHoursAgo));
+            alice.AddBark(new Bark("This is a test message", _yesterday));
+            alice.AddBark(new Bark("This is another one!", _now));
             _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
 
             _showUserMessages.Execute();

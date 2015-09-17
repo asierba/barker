@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Barker.App.Entities;
 using Barker.External;
 using Barker.External.Repositories;
+using Castle.Core.Internal;
 
 namespace Barker.App.Actions
 {
@@ -30,10 +31,7 @@ namespace Barker.App.Actions
                 _userRepository.Add(user);
             }
 
-            foreach (var message in Messages)
-            {
-                user.AddBark(new Bark(Username, message, _clock.Now));
-            }
+            Messages.ForEach(x => user.AddBark(new Bark(x, _clock.Now)));
         }
     }
 }

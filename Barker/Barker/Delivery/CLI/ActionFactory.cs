@@ -11,13 +11,13 @@ namespace Barker.Delivery.CLI
         private const string MessageSeparator = "->";
 
         private readonly IUserRepository _userRepository;
-        private readonly IPrinter _printer;
+        private readonly IBarksPrinter _barksPrinter;
         private readonly IClock _clock;
 
-        public ActionFactory(IUserRepository userRepository, IPrinter printer, IClock clock)
+        public ActionFactory(IUserRepository userRepository, IBarksPrinter barksPrinter, IClock clock)
         {
             _userRepository = userRepository;
-            _printer = printer;
+            _barksPrinter = barksPrinter;
             _clock = clock;
         }
 
@@ -32,7 +32,7 @@ namespace Barker.Delivery.CLI
             if (input.Contains(" wall"))
             {
                 var username = input.Remove(input.LastIndexOf(" wall"));
-                return new ShowWall(username, _userRepository, _printer);
+                return new ShowWall(username, _userRepository, _barksPrinter);
             }
             if (input.Contains(MessageSeparator))
             {
@@ -41,7 +41,7 @@ namespace Barker.Delivery.CLI
                 var messages = inputChunks.Skip(1).Select(x => x.Trim()).ToList();
                 return new Post(username, messages, _userRepository, _clock);
             }
-            return new ShowBarks(input.Trim(), _userRepository, _printer);
+            return new ShowBarks(input.Trim(), _userRepository, _barksPrinter);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Barkert.Tests.UnitTests.App.Actions
         }
 
         [Test] public void 
-        add_follower_to_the_repository()
+        add_following_user_to_the_user()
         {
             var follow = new Follow("Charlie", "Allice", _userRepository.Object);
 

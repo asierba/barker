@@ -1,18 +1,19 @@
 using System.Linq;
 using Barker.Delivery.CLI;
 using Barker.External.Repositories;
+using Castle.Core.Internal;
 
 namespace Barker.App.Actions
 {
     public class ShowWall : IAction
     {
         private readonly IUserRepository _userRepository;
-        private readonly IPrinter _printer;
+        private readonly IBarksPrinter _barksPrinter;
 
-        public ShowWall(string username, IUserRepository userRepository, IPrinter printer)
+        public ShowWall(string username, IUserRepository userRepository, IBarksPrinter barksPrinter)
         {
             Username = username;
-            _printer = printer;
+            _barksPrinter = barksPrinter;
             _userRepository = userRepository;
         }
 
@@ -21,14 +22,9 @@ namespace Barker.App.Actions
         public void Execute()
         {
             var user = _userRepository.Get(Username);
-            var barks = user.Barks.ToList();
+            _barksPrinter.PrintBarks(user.Barks.OrderByDescending(x => x.Date), Username);
 
-            foreach (var followingUser in user.FollowingUsers)
-            {
-                barks.AddRange(followingUser.Barks);
-            }
-
-            _printer.PrintBarksWithUsername(barks.OrderByDescending(x => x.Date));
+            user.FollowingUsers.ForEach(x => _barksPrinter.PrintBarks(x.Barks.OrderByDescending(y => y.Date), x.Name));
         }
     }
 }

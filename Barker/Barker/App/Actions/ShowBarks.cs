@@ -7,12 +7,12 @@ namespace Barker.App.Actions
     public class ShowBarks : IAction
     {
         private readonly IUserRepository _userRepository;
-        private readonly IPrinter _printer;
+        private readonly IBarksPrinter _barksPrinter;
 
-        public ShowBarks(string username, IUserRepository userRepository, IPrinter printer)
+        public ShowBarks(string username, IUserRepository userRepository, IBarksPrinter barksPrinter)
         {
             Username = username;
-            _printer = printer;
+            _barksPrinter = barksPrinter;
            _userRepository = userRepository;
         }
 
@@ -21,7 +21,7 @@ namespace Barker.App.Actions
         public void Execute()
         {
             var user = _userRepository.Get(Username);
-            _printer.PrintBarks(user.Barks.OrderByDescending(x => x.Date));
+            _barksPrinter.PrintBarks(user.Barks.OrderByDescending(x => x.Date));
         }
     }
 }

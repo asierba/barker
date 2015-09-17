@@ -12,7 +12,7 @@ namespace Barkert.Tests.UnitTests.App.Actions
 {
     class ShowWallShould
     {
-        private Mock<IPrinter> _printer;
+        private Mock<IBarksPrinter> _printer;
         private Mock<IUserRepository> _userRepository;
         private ShowWall _showWall;
 
@@ -24,7 +24,7 @@ namespace Barkert.Tests.UnitTests.App.Actions
         public void Setup()
         {
             _userRepository = new Mock<IUserRepository>();
-            _printer = new Mock<IPrinter>();
+            _printer = new Mock<IBarksPrinter>();
             _showWall = new ShowWall("Alice", _userRepository.Object, _printer.Object);
         }
 
@@ -32,23 +32,23 @@ namespace Barkert.Tests.UnitTests.App.Actions
         print_users_barks_in_time_descending_order()
         {
             var alice = new User("Alice");
-            alice.AddBark(new Bark("Alice", "Irrelevant", _fiveHoursAgo));
-            alice.AddBark(new Bark("Alice", "Irrelevant", _yesterday));
-            alice.AddBark(new Bark("Alice", "Irrelevant", _now));
+            alice.AddBark(new Bark("A message 1", _fiveHoursAgo));
+            alice.AddBark(new Bark("A message 2", _yesterday));
+            alice.AddBark(new Bark("A message 3", _now));
             _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
-            _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
+
             _showWall.Execute();
 
-            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.ElementAt(0).Date == _now)));
-            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.ElementAt(1).Date == _fiveHoursAgo)));
-            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark >>(y => y.ElementAt(2).Date == _yesterday)));
+            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(0).Date == _now), "Alice"));
+            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(1).Date == _fiveHoursAgo), "Alice"));
+            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark >>(y => y.ElementAt(2).Date == _yesterday), "Alice"));
         }
 
         [Test] public void
         print_barks_from_following_users()
         {
-            var barkFromAlice = new Bark("Alice", "a message", DateTime.Now.AddDays(-1));
-            var barkFromBob = new Bark("Bob", "a message", DateTime.Now.AddDays(-5));
+            var barkFromAlice = new Bark("a message from Alice", DateTime.Now.AddDays(-1));
+            var barkFromBob = new Bark("a message from Bob", DateTime.Now.AddDays(-5));
 
             var alice = new User("Alice");
             var bob = new User("Bob");
@@ -59,8 +59,8 @@ namespace Barkert.Tests.UnitTests.App.Actions
 
             _showWall.Execute();
 
-            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.Contains(barkFromAlice))));
-            _printer.Verify(x => x.PrintBarksWithUsername(It.Is<IEnumerable<Bark>>(y => y.Contains(barkFromBob))));
+            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.Contains(barkFromAlice)), "Alice"));
+            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.Contains(barkFromBob)), "Bob"));
         }
     }
 }

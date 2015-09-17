@@ -15,7 +15,7 @@ namespace Barkert.Tests.UnitTests.Delivery.CLI
         [SetUp]
         public void Setup()
         {
-            _actionFactory = new ActionFactory(new Mock<IUserRepository>().Object,  new Mock<IPrinter>().Object, new Mock<IClock>().Object);
+            _actionFactory = new ActionFactory(new Mock<IUserRepository>().Object,  new Mock<IBarksPrinter>().Object, new Mock<IClock>().Object);
         }
 
         [Test] public void
