@@ -32,7 +32,7 @@ namespace Barker.App.Actions
 
             foreach (var message in Messages)
             {
-                user.Barks.Add(new Bark(Username, message, _clock.Now));
+                user.AddBark(new Bark(Username, message, _clock.Now));
             }
         }
     }

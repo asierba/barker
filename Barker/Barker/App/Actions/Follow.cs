@@ -20,7 +20,7 @@ namespace Barker.App.Actions
         {
             var user = _userRepository.Get(Username);
             var toFollow = _userRepository.Get(Following);
-            user.Following.Add(toFollow);
+            user.AddFollowingUser(toFollow);
         }
     }
 }

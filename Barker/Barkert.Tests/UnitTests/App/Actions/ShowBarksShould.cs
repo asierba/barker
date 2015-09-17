@@ -33,9 +33,9 @@ namespace Barkert.Tests.UnitTests.App.Actions
         print_users_barks_in_time_descending_order()
         {
             var alice = new User("alice");
-            alice.Barks.Add(new Bark("Alice", "Irrelevant", _fiveHoursAgo));
-            alice.Barks.Add(new Bark("Alice", "Irrelevant", _yesterday));
-            alice.Barks.Add(new Bark("Alice", "Irrelevant", _now));
+            alice.AddBark(new Bark("Alice", "Irrelevant", _fiveHoursAgo));
+            alice.AddBark(new Bark("Alice", "Irrelevant", _yesterday));
+            alice.AddBark(new Bark("Alice", "Irrelevant", _now));
             _userRepository.Setup(x => x.Get("Alice")).Returns(alice);
 
             _showUserMessages.Execute();

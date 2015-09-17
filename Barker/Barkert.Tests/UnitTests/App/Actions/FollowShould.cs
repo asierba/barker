@@ -29,7 +29,7 @@ namespace Barkert.Tests.UnitTests.App.Actions
 
             follow.Execute();
 
-            Assert.Contains(_allice, _charlie.Following);
+            Assert.Contains(_allice, _charlie.FollowingUsers);
         } 
     }
 }

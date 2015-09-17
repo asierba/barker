@@ -21,9 +21,9 @@ namespace Barker.App.Actions
         public void Execute()
         {
             var user = _userRepository.Get(Username);
-            var barks = user.Barks;
+            var barks = user.Barks.ToList();
 
-            foreach (var followingUser in user.Following)
+            foreach (var followingUser in user.FollowingUsers)
             {
                 barks.AddRange(followingUser.Barks);
             }
