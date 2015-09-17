@@ -1,5 +1,4 @@
 ﻿using Castle.Windsor;
-using Castle.Windsor.Installer;
 
 namespace Barker.Delivery.CLI
 {
@@ -26,12 +25,12 @@ namespace Barker.Delivery.CLI
             _controller = Container.Resolve<IController>();
             _console = Container.Resolve<IConsole>();
 
-            string userInput; 
-            do
+            string userInput;
+
+            while ((userInput = _console.ReadLine()).ToLower() != "exit") 
             {
-                userInput = _console.ReadLine();
-                if(userInput != "EXIT") _controller.Run(userInput);
-            } while (userInput != "EXIT");
+                 _controller.Run(userInput);
+            } 
 
             _console.WriteLine("Good bye!");
         }

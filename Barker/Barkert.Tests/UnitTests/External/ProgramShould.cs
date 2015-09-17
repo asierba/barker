@@ -20,11 +20,14 @@ namespace Barkert.Tests.UnitTests.External
             Program.Container.OverrideRegister(_controller.Object);
         }
 
-        [Test] public void 
-        exit_when_user_inputs_special_word()
+        [TestCase("EXIT")]
+        [TestCase("Exit")]
+        [TestCase("exit")]
+        public void 
+        exit_when_user_inputs_special_word(string input)
         {
             _console.Setup(x => x.ReadLine())
-                .Returns("EXIT");
+                .Returns(input);
 
             Program.Main(new string[] { });
 
