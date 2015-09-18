@@ -53,7 +53,7 @@ namespace Barkert.Tests.UnitTests.App.Actions
         {
             var messages = new[] { "a message" };
             var post = new Post("mike", messages, _userRepository.Object, _clock.Object);
-            _userRepository.Setup(x => x.Get("mike")).Returns((User) null);
+            _userRepository.Setup(x => x.Get("mike")).Returns(new NotExistingUser());
 
             post.Execute();
 

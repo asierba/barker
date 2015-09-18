@@ -54,6 +54,7 @@
     <Compile Include="App\Actions\Follow.cs" />
     <Compile Include="App\Actions\ShowWall.cs" />
     <Compile Include="App\Entities\Bark.cs" />
+    <Compile Include="App\Entities\NotExistingUser.cs" />
     <Compile Include="App\Entities\User.cs" />
     <Compile Include="Delivery\CLI\ConsoleAdapter.cs" />
     <Compile Include="Delivery\CLI\IConsole.cs" />

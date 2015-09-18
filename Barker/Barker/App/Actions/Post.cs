@@ -25,7 +25,7 @@ namespace Barker.App.Actions
         public void Execute()
         {
             var user =_userRepository.Get(Username);
-            if (user == null)
+            if (user is NotExistingUser)
             {
                 user = new User(Username);
                 _userRepository.Add(user);

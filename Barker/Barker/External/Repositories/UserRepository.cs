@@ -10,7 +10,8 @@ namespace Barker.External.Repositories
 
         public User Get(string username)
         {
-            return _users.SingleOrDefault(x => x.Name == username);
+            var user = _users.SingleOrDefault(x => x.Name == username);
+            return user ?? new NotExistingUser();
         }
 
         public void Add(User user)
