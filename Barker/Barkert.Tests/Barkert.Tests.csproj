@@ -65,7 +65,7 @@
     <Compile Include="UnitTests\Delivery\CLI\ControllerShould.cs" />
     <Compile Include="UnitTests\External\ClockShould.cs" />
     <Compile Include="UnitTests\App\Actions\PostShould.cs" />
-    <Compile Include="UnitTests\External\ProgramShould.cs" />
+    <Compile Include="UnitTests\Delivery\CLI\ProgramShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTests\Delivery\CLI\BarksPrinterShould.cs" />
     <Compile Include="UnitTests\App\Actions\ShowBarksShould.cs" />

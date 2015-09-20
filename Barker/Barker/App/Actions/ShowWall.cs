@@ -22,9 +22,10 @@ namespace Barker.App.Actions
         public void Execute()
         {
             var user = _userRepository.Get(Username);
-            _barksPrinter.PrintBarks(user.Barks.OrderByDescending(x => x.Date), Username);
 
-            user.FollowingUsers.ForEach(x => _barksPrinter.PrintBarks(x.Barks.OrderByDescending(y => y.Date), x.Name));
+            _barksPrinter.PrintBarks(user.Barks.OrderByDescending(x => x.CreatedDate), Username);
+
+            user.FollowingUsers.ForEach(x => _barksPrinter.PrintBarks(x.Barks.OrderByDescending(y => y.CreatedDate), x.Name));
         }
     }
 }

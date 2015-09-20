@@ -84,7 +84,7 @@ namespace Barkert.Tests.UnitTests.Delivery.CLI
 
             Assert.That(action, Is.Not.Null, "Wrong action type");
             Assert.That(action.Username, Is.EqualTo("Bob"));
-            Assert.That(action.Following, Is.EqualTo("Allice"));
+            Assert.That(action.FollowingUsername, Is.EqualTo("Allice"));
         }
     }
 }

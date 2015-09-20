@@ -6,21 +6,21 @@ namespace Barker.App.Actions
     {
         private readonly IUserRepository _userRepository;
 
-        public Follow(string username, string following, IUserRepository userRepository)
+        public Follow(string username, string followingUsername, IUserRepository userRepository)
         {
             _userRepository = userRepository;
             Username = username;
-            Following = following;
+            FollowingUsername = followingUsername;
         }
 
         public string Username { get; }
-        public string Following { get; }
+        public string FollowingUsername { get; }
 
         public void Execute()
         {
             var user = _userRepository.Get(Username);
-            var toFollow = _userRepository.Get(Following);
-            user.AddFollowingUser(toFollow);
+            var userToFollow = _userRepository.Get(FollowingUsername);
+            user.AddFollowingUser(userToFollow);
         }
     }
 }

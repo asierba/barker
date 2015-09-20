@@ -4,7 +4,7 @@ namespace Barker.External
 {
     public class Clock : IClock
     {
-        public string GetTimeSpanned(DateTime dateTime)
+        public string GetTimePassedFrom(DateTime dateTime)
         {
             var timeSpan = Now - dateTime;
 

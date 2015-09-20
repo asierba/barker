@@ -3,7 +3,7 @@ using Barkert.Tests.Helpers;
 using Moq;
 using NUnit.Framework;
 
-namespace Barkert.Tests.UnitTests.External
+namespace Barkert.Tests.UnitTests.Delivery.CLI
 {
     [TestFixture]
     public class ProgramShould

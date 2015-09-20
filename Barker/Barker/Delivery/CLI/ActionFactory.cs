@@ -36,10 +36,10 @@ namespace Barker.Delivery.CLI
 
         private IAction CreateFollow(string input)
         {
-            var pattern = " " + FollowIfentifier;
+            const string pattern = " " + FollowIfentifier;
             var username = input.Remove(input.LastIndexOf(pattern));
-            var followingUser = input.Substring(input.LastIndexOf(pattern) + pattern.Length + 1);
-            return new Follow(username, followingUser, _userRepository);
+            var followingUsername = input.Substring(input.LastIndexOf(pattern) + pattern.Length + 1);
+            return new Follow(username, followingUsername, _userRepository);
         }
 
         private IAction CreateShowWall(string input)

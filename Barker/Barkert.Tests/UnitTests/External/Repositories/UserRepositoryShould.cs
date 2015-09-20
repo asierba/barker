@@ -7,8 +7,8 @@ namespace Barkert.Tests.UnitTests.External.Repositories
     [TestFixture]
     class UserRepositoryShould
     {
-        [Test]
-        public void get_user_by_username()
+        [Test] public void 
+        get_user_by_username()
         {
             var userRepository = new UserRepository();
 
@@ -19,8 +19,8 @@ namespace Barkert.Tests.UnitTests.External.Repositories
             Assert.That(user.Name, Is.EqualTo("bob"));
         }
 
-        [Test]
-        public void get_no_user_if_not_present()
+        [Test] public void 
+        get_no_user_if_not_present()
         {
             var userRepository = new UserRepository();
 

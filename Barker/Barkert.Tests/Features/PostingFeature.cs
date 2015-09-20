@@ -38,7 +38,7 @@ namespace Barkert.Tests.Features
         }
 
         [Test] public void
-        user_can_publish_message_to_personal_timeline()
+        user_can_publish_and_view_barks_from_a_timeline()
         {
             MockConsoleInput(@"Alice->I love the weather today
 Bob->Damn!We lost!
@@ -48,9 +48,9 @@ Bob
 EXIT");
             _clock.Setup(x => x.Now)
                 .ReturnsInOrder(_fiveMinutesAgo, _twoMinutesAgo, _oneMinuteAgo);
-            _clock.Setup(x => x.GetTimeSpanned(_fiveMinutesAgo)).Returns("5 minutes");
-            _clock.Setup(x => x.GetTimeSpanned(_twoMinutesAgo)).Returns("2 minutes");
-            _clock.Setup(x => x.GetTimeSpanned(_oneMinuteAgo)).Returns("1 minute");
+            _clock.Setup(x => x.GetTimePassedFrom(_fiveMinutesAgo)).Returns("5 minutes");
+            _clock.Setup(x => x.GetTimePassedFrom(_twoMinutesAgo)).Returns("2 minutes");
+            _clock.Setup(x => x.GetTimePassedFrom(_oneMinuteAgo)).Returns("1 minute");
 
 
             Program.Main(new string[] { });

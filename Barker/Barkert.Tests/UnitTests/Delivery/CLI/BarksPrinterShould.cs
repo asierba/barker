@@ -34,9 +34,9 @@ namespace Barkert.Tests.UnitTests.Delivery.CLI
                 new Bark("I love the weather today! :)", _fiveMinutesAgo),
                 new Bark("Hope I can go to the swimming pool..", _twoHoursAgo),
             };
-           _clock.Setup(x => x.GetTimeSpanned(_fiveMinutesAgo))
+           _clock.Setup(x => x.GetTimePassedFrom(_fiveMinutesAgo))
                .Returns("5 mins");
-            _clock.Setup(x => x.GetTimeSpanned(_twoHoursAgo))
+            _clock.Setup(x => x.GetTimePassedFrom(_twoHoursAgo))
                .Returns("2 hours");
 
             _barksPrinter.PrintBarks(barks);
@@ -53,9 +53,9 @@ namespace Barkert.Tests.UnitTests.Delivery.CLI
                 new Bark("I love the weather today! :)", _fiveMinutesAgo),
                 new Bark("Hope I can go to the swimming pool..", _twoHoursAgo),
             };
-            _clock.Setup(x => x.GetTimeSpanned(_fiveMinutesAgo))
+            _clock.Setup(x => x.GetTimePassedFrom(_fiveMinutesAgo))
                 .Returns("5 mins");
-            _clock.Setup(x => x.GetTimeSpanned(_twoHoursAgo))
+            _clock.Setup(x => x.GetTimePassedFrom(_twoHoursAgo))
                .Returns("2 hours");
 
             _barksPrinter.PrintBarks(barks, "Alice");

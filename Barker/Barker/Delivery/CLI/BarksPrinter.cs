@@ -18,12 +18,12 @@ namespace Barker.Delivery.CLI
 
         public void PrintBarks(IEnumerable<Bark> barks)
         {
-            barks.ForEach(x => _console.WriteLine($"{x.Message}({_clock.GetTimeSpanned(x.Date)} ago)"));
+            barks.ForEach(x => _console.WriteLine($"{x.Message}({_clock.GetTimePassedFrom(x.CreatedDate)} ago)"));
         }
 
         public void PrintBarks(IEnumerable<Bark> barks, string username)
         {
-            barks.ForEach(x => _console.WriteLine($"{username} - {x.Message}({_clock.GetTimeSpanned(x.Date)} ago)"));
+            barks.ForEach(x => _console.WriteLine($"{username} - {x.Message}({_clock.GetTimePassedFrom(x.CreatedDate)} ago)"));
         }
     }
 }

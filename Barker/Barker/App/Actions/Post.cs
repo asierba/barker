@@ -11,10 +11,10 @@ namespace Barker.App.Actions
         private readonly IUserRepository _userRepository;
         private readonly IClock _clock;
 
-        public Post(string username, IList<string> message, IUserRepository userRepository, IClock clock)
+        public Post(string username, IList<string> messages, IUserRepository userRepository, IClock clock)
         {
             Username = username;
-            Messages = message;
+            Messages = messages;
             _userRepository = userRepository;
             _clock = clock;
         }

@@ -9,11 +9,12 @@ namespace Barkert.Tests.Helpers
         public static void OverrideRegister<T>(this WindsorContainer container, T instance)
             where T : class
         {
+            var uniqueName = "Override for " + typeof(T) + Guid.NewGuid();
             container.Register(
                 Component.For<T>()
                     .UsingFactoryMethod(x => instance)
                     .IsDefault()
-                    .Named("Override for " + typeof(T) + Guid.NewGuid())
+                    .Named(uniqueName)
                 );
         }
     }

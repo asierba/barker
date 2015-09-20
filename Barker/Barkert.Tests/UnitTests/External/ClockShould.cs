@@ -20,13 +20,14 @@ namespace Barkert.Tests.UnitTests.External
         [TestCase(5*60*60, "5 hours")]
         [TestCase(24*60*60, "1 day")]
         [TestCase(3*24*60*60, "3 days")]
-        [TestCase(3*24*60*60, "3 days")]
+        [TestCase(3*24*60*60+1, "3 days")]
+        [TestCase(366*24*60*60, "366 days")]
         public void
-        get_time_difference(int seconds, string expected)
+        get_time_passed(int seconds, string expected)
         {
             var clock = new Clock();
-            var dateInPast = DateTime.Now.AddSeconds(-seconds);
-            Assert.That(clock.GetTimeSpanned(dateInPast), Is.EqualTo(expected));
+            var dateInThePast = DateTime.Now.AddSeconds(-seconds);
+            Assert.That(clock.GetTimePassedFrom(dateInThePast), Is.EqualTo(expected));
         }
     }
 }

@@ -4,13 +4,13 @@ namespace Barker.App.Entities
 {
     public class Bark
     {
-        public Bark(string message, DateTime date)
+        public Bark(string message, DateTime createdDate)
         {
             Message = message;
-            Date = date;
+            CreatedDate = createdDate;
         }
 
         public string Message { get; }
-        public DateTime Date { get; }
+        public DateTime CreatedDate { get; }
     }
 }

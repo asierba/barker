@@ -19,7 +19,6 @@ namespace Barkert.Tests.UnitTests.Delivery.CLI
             controller.Run("Bob");
 
             anAction.Verify(x => x.Execute());
-
-        }
+       }
     }
 }

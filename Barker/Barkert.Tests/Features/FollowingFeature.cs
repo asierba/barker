@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Barker.Delivery.CLI;
 using Barker.External;
 using Barkert.Tests.Helpers;
@@ -42,7 +38,7 @@ namespace Barkert.Tests.Features
         }
 
         [Test] public void
-        user_can_publish_message_to_personal_timeline()
+        user_following_another_user_can_see_other_users_barks_in_wall()
         {
             MockConsoleInput(@"Alice->I love the weather today
 Charlie -> I'm in New York today! Anyone want to have a coffee?
@@ -51,8 +47,8 @@ Charlie wall
 EXIT");
             _clock.Setup(x => x.Now)
                 .ReturnsInOrder(_fiveMinutesAgo, _twoSecondsAgo);
-            _clock.Setup(x => x.GetTimeSpanned(_fiveMinutesAgo)).Returns("5 minutes");
-            _clock.Setup(x => x.GetTimeSpanned(_twoSecondsAgo)).Returns("2 seconds");
+            _clock.Setup(x => x.GetTimePassedFrom(_fiveMinutesAgo)).Returns("5 minutes");
+            _clock.Setup(x => x.GetTimePassedFrom(_twoSecondsAgo)).Returns("2 seconds");
 
             Program.Main(new string[] { });
 

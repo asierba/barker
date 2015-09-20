@@ -4,7 +4,7 @@ namespace Barker.External
 {
     public interface IClock
     {
-        string GetTimeSpanned(DateTime dateTime);
+        string GetTimePassedFrom(DateTime dateTime);
         DateTime Now { get; }
     }
 }
