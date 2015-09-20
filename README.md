@@ -7,7 +7,7 @@ Console based [twitter](http://twitter.com/) alike application.
 
 How to use
 ------------
-Run the application either from the command line or double clicking on it.
+Run the application go to the Downloads folder and run *Barker.exe* either from the command line or double clicking on it.
 
 There are four commands you can run:
 * **Post** messages as a user: [username] -> [message]
