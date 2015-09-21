@@ -5,7 +5,7 @@ namespace Barker.Delivery.CLI
 {
     public interface IBarksPrinter
     {
-        void PrintBarks(IEnumerable<Bark> barks);
-        void PrintBarks(IEnumerable<Bark> barks, string username);
+        void PrintSingleUserBarks(IEnumerable<Bark> barks);
+        void PrintMultipleUsersBarks(IEnumerable<Bark> barks);
     }
 }

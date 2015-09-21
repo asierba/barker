@@ -31,7 +31,7 @@ namespace Barker.App.Actions
                 _userRepository.Add(user);
             }
 
-            Messages.ForEach(x => user.AddBark(new Bark(x, _clock.Now)));
+            Messages.ForEach(x => user.AddBark(new Bark(Username, x, _clock.Now)));
         }
     }
 }

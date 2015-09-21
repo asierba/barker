@@ -43,9 +43,9 @@ namespace Barkert.Tests.UnitTests.App.Actions
 
             _showUserMessages.Execute();
 
-            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(0).CreatedDate == _now)));
-            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(1).CreatedDate == _fiveHoursAgo)));
-            _printer.Verify(x => x.PrintBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(2).CreatedDate == _yesterday)));
+            _printer.Verify(x => x.PrintSingleUserBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(0).CreatedDate == _now)));
+            _printer.Verify(x => x.PrintSingleUserBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(1).CreatedDate == _fiveHoursAgo)));
+            _printer.Verify(x => x.PrintSingleUserBarks(It.Is<IEnumerable<Bark>>(y => y.ElementAt(2).CreatedDate == _yesterday)));
         }
     }
 }

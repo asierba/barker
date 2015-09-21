@@ -16,14 +16,14 @@ namespace Barker.Delivery.CLI
             _clock = clock;
         }
 
-        public void PrintBarks(IEnumerable<Bark> barks)
+        public void PrintSingleUserBarks(IEnumerable<Bark> barks)
         {
             barks.ForEach(x => _console.WriteLine($"{x.Message}({_clock.GetTimePassedFrom(x.CreatedDate)} ago)"));
         }
 
-        public void PrintBarks(IEnumerable<Bark> barks, string username)
+        public void PrintMultipleUsersBarks(IEnumerable<Bark> barks)
         {
-            barks.ForEach(x => _console.WriteLine($"{username} - {x.Message}({_clock.GetTimePassedFrom(x.CreatedDate)} ago)"));
+            barks.ForEach(x => _console.WriteLine($"{x.Username} - {x.Message}({_clock.GetTimePassedFrom(x.CreatedDate)} ago)"));
         }
     }
 }

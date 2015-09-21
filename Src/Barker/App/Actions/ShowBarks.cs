@@ -21,7 +21,7 @@ namespace Barker.App.Actions
         public void Execute()
         {
             var user = _userRepository.Get(Username);
-            _barksPrinter.PrintBarks(user.Barks.OrderByDescending(x => x.CreatedDate));
+            _barksPrinter.PrintSingleUserBarks(user.Barks.OrderByDescending(x => x.CreatedDate));
         }
     }
 }

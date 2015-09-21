@@ -23,20 +23,20 @@ namespace Barkert.Tests.Helpers
 
         public UserBuilder WithBark(string message, DateTime date)
         {
-            _barks.Add(new Bark(message, date));
+            _barks.Add(new Bark(_name, message, date));
             return this;
         }
 
         public UserBuilder WithBark(DateTime date)
         {
-            _barks.Add(new Bark("An irrelevant message", date));
+            _barks.Add(new Bark(_name, "An irrelevant message", date));
             return this;
         }
 
         public UserBuilder WithBark(string message)
         {
             var irrelevantDate = new DateTime();
-            _barks.Add(new Bark(message, irrelevantDate));
+            _barks.Add(new Bark(_name, message, irrelevantDate));
             return this;
         }
 

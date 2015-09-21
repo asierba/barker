@@ -1,4 +1,7 @@
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Barker.App.Entities;
 using Barker.Delivery.CLI;
 using Barker.External.Repositories;
 using Castle.Core.Internal;
@@ -21,11 +24,13 @@ namespace Barker.App.Actions
 
         public void Execute()
         {
-            var user = _userRepository.Get(Username);
+            var mainUser = _userRepository.Get(Username);
+            var followingUsers = mainUser.FollowingUsers;
 
-            _barksPrinter.PrintBarks(user.Barks.OrderByDescending(x => x.CreatedDate), Username);
+            var allBarks = new ReadOnlyCollectionBuilder<Bark>(mainUser.Barks);
+            followingUsers.ForEach(x => x.Barks.ForEach(y => allBarks.Add(y)));
 
-            user.FollowingUsers.ForEach(x => _barksPrinter.PrintBarks(x.Barks.OrderByDescending(y => y.CreatedDate), x.Name));
+            _barksPrinter.PrintMultipleUsersBarks(allBarks.OrderByDescending(x => x.CreatedDate));
         }
     }
 }
